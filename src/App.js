@@ -109,16 +109,12 @@ function App() {
 
       <Modal isOpen={store.logOutModal} onClose={cancelLogOut}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Log Out?</ModalHeader>
-          <ModalFooter>
-            <Button variantColor="red" mr={3} onClick={logOut}>
-              Yes
-            </Button>
-            <Button variantColor="blue" onClick={cancelLogOut}>No</Button>
-          </ModalFooter>
-          <ModalHeader>Previous Transaction</ModalHeader>
-          <Button variantColor="blue" onClick={viewEtherscan}>View On Etherscan</Button>
+        <ModalContent padding="20px">
+        <ModalHeader>Options</ModalHeader>
+        <ModalCloseButton />
+            <Button variantColor="red" onClick={logOut}> Log Out </Button>
+          <ModalHeader></ModalHeader>
+          <Button variantColor="blue" onClick={viewEtherscan}>View Previous Transaction</Button>
         </ModalContent>
       </Modal>
 
@@ -131,10 +127,10 @@ function App() {
         </ModalContent>
       </Modal>
 
-      <Header buttonText={store.loggedIn?store.address:"Login"} onClickFunction={headerButtonFunction} />
+      <Header buttonText={store.loggedIn?"⚙️ "+store.address:"Login"} onClickFunction={headerButtonFunction} />
       <Box pt="50px">
 
-        <Box boxShadow="lg" borderRadius="20px" p="40px" w="500px" my="auto" mx="auto" color="black" bg="orange.100">
+        <Box boxShadow="lg" borderRadius="20px" p="40px" w="400px" my="auto" mx="auto" color="black" bg="orange.100">
           <Explainer loggedIn={store.loggedIn}/>
           <TokenSend store={store} dispatch={dispatch}/>
         </Box>
