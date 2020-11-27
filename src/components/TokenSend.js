@@ -11,7 +11,7 @@ function TokenSend({store,dispatch}){
     const { register, handleSubmit } = useForm();
 
     const updateBalance = async() => {
-        if (store.tokenWallet!==null){
+        if (store.tokenWallet!==undefined){
             const newBalance = (parseFloat((await store.tokenWallet.token.balanceOf(store.address)).toString())/(Math.pow(10,18))).toFixed(2);
             dispatch({type:'UPDATE_BALANCE',tokenBalance:newBalance});
         }

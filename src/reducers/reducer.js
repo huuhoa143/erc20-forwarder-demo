@@ -25,7 +25,7 @@ function reducer(state, action) {
                 loggedIn:false,
                 loading:false,
                 txModal:false,
-                tokenWallet:null,
+                tokenWallet:undefined,
                 tokenBalance:0,
                 transferDestination:""
             }
