@@ -3,7 +3,7 @@ import TokenSend from './components/TokenSend';
 import reducer from './reducers/reducer';
 import Token from './utils/TokenWallet';
 import web3Modal from './utils/web3Modal';
-import { ThemeProvider, CSSReset, Box, Text, Button} from '@chakra-ui/core';
+import { ThemeProvider, CSSReset, Box, Text, Button, Heading} from '@chakra-ui/core';
 import { ethers } from "ethers";
 import {useReducer} from "react";
 import Explainer from './components/Explainer';
@@ -126,7 +126,9 @@ function App() {
           </ModalBody>
         </ModalContent>
       </Modal>
-
+      <Box width="100%">
+        <Text>PLEASE SET YOUR WEB3 PROVIDER TO KOVAN</Text>
+      </Box>
       <Header buttonText={store.loggedIn?"⚙️ "+store.address:"Login"} onClickFunction={headerButtonFunction} />
       <Box pt="50px">
 
