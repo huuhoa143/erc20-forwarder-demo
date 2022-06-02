@@ -21,16 +21,14 @@ function TokenSend({store,dispatch}){
 
     const onSubmit = async(data) => {
         console.log("submitted");
-        const fee = parseFloat(ethers.utils.formatEther(await store.tokenWallet.estimateTransferCost(data.to,data.amount))).toFixed(2);
-        console.log("fee : " + fee);
-        dispatch({type:'PROPOSE_TX',amount:data.amount, fee:fee, to:data.to});
+        dispatch({type:'PROPOSE_TX',amount:data.amount});
     }
-    
-    const approveFeeProxy = async() => {
+
+    const approvePurchaseGiftCard = async() => {
         dispatch({type:'LOADING'});
         try{
-            await store.tokenWallet.permitFeeProxy();
-            dispatch({type:'FEE_PROXY_APPROVED'});
+            await store.tokenWallet.permitPurchaseGiftCard();
+            dispatch({type:'PURCHASE_GIFT_CARD_APPROVED'});
         }
         catch(error){
             console.log(error);
@@ -56,14 +54,14 @@ function TokenSend({store,dispatch}){
             </div>
             )
     }
-    if((!store.transferHandlerApproved)||(!store.feeProxyApproved)){
+    if((!store.transferHandlerApproved)||(!store.purchaseGiftCardApproved)){
         return(
             <div>
                 <QRCode value={"ethereum:"+store.address} bgColor="#FEEBC8" fgColor="#1D4044"/>
                 <Text fontSize="96px" fontWeight="600" color="teal.900">◈ {store.tokenBalance} </Text>
                 <Text fontSize="3xl" color="red.900" fontWeight="600"> Approval Needed to Proceed </Text>
-                <Button onClick={approveFeeProxy} isDisabled={store.feeProxyApproved} leftIcon="lock" bg="red.700" color="orange.200">Approve Biconomy Fee Proxy</Button><br></br><br></br>
-                <Button onClick={approveTransferHandler} isDisabled={store.transferHandlerApproved} leftIcon="lock" bg="red.700" color="orange.200">Approve Transfer Handler</Button><br></br><br></br>
+                <Button onClick={approvePurchaseGiftCard} isDisabled={store.purchaseGiftCardApproved} leftIcon="lock" bg="red.700" color="orange.200">Approve Purchase Gift Card</Button><br></br><br></br>
+                <Button onClick={approveTransferHandler} isDisabled={store.transferHandlerApproved} leftIcon="lock" bg="red.700" color="orange.200">Approve ERC20 Forwarder</Button><br></br><br></br>
             </div>
         )
     }
@@ -72,8 +70,6 @@ function TokenSend({store,dispatch}){
         <QRCode value={"ethereum:"+store.address} bgColor="#FEEBC8" fgColor="#1D4044"/>
         <Text fontSize="72px" fontWeight="600" color="teal.900">◈ {store.tokenBalance} </Text>
         <form onSubmit={handleSubmit(onSubmit)}>
-        <Text fontSize="xl" color="teal.900" fontWeight="600"> Send To</Text>
-        <Input name="to" ref={register({pattern: /^0x[a-fA-F0-9]{40}$/})} placeholder="Enter Destination Address" size="lg"/><br></br>
         <Text fontSize="xl" color="teal.900" fontWeight="600"> Amount To Send</Text>
         <Input type="number" name="amount" ref={register({min:0})} placeholder="e.g 420.69" size="lg"/><br></br>
         <Button type="submit" w="100%" leftIcon="arrow-right" bg="teal.700" color="orange.200">Send</Button>

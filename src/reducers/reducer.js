@@ -12,8 +12,8 @@ function reducer(state, action) {
               tokenBalance:action.tokenBalance,
               transferHandlerApproved:action.transferHandlerApproved,
               transferHandlerApproval:null,
-              feeProxyApproved:action.feeProxyApproved,
-              feeProxyApproval:null,
+              purchaseGiftCardApproved:action.purchaseGiftCardApproved,
+              purchaseGiftCardApproval:null,
               transferAmount:"",
               transferFee:"",
               transferDestination:"",
@@ -81,21 +81,19 @@ function reducer(state, action) {
         case 'SIGN_FEE_PROXY_APPROVAL':
             return {
                 ...state,
-                feeProxyApproval:action.feeProxyApproval
+                purchaseGiftCardApproval:action.purchaseGiftCardApproval
             }
-        
-        case 'FEE_PROXY_APPROVED':
+
+        case 'PURCHASE_GIFT_CARD_APPROVED':
             return {
                 ...state,
-                feeProxyApproved:true
+                purchaseGiftCardApproved:true
             }
 
         case 'PROPOSE_TX':
             return {
                 ...state,
                 transferAmount:action.amount,
-                transferFee:action.fee,
-                transferDestination:action.to,
                 txModal:true
             }
 

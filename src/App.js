@@ -42,10 +42,11 @@ function App() {
         const address = await wallet.getAddress();
         const tokenWallet = new Token(provider);
         const balance = (parseFloat((await tokenWallet.token.balanceOf(address)).toString())/(Math.pow(10,18))).toFixed(2);
+        console.log(parseFloat((await tokenWallet.token.balanceOf(address)).toString()))
         const transferHandlerApproved = await tokenWallet.transferHandlerApproved(address);
-        const feeProxyApproved = await tokenWallet.feeProxyApproved(address);
-        dispatch({type:'LOGIN', tokenWallet:tokenWallet, address:address, tokenBalance:balance, 
-                  transferHandlerApproved:transferHandlerApproved,feeProxyApproved:feeProxyApproved});
+        const purchaseGiftCardApproved = await tokenWallet.purchaseGiftCardApproved(address);
+        dispatch({type:'LOGIN', tokenWallet:tokenWallet, address:address, tokenBalance:balance,
+                  transferHandlerApproved:transferHandlerApproved, purchaseGiftCardApproved:purchaseGiftCardApproved});
       }
       catch(error){
         console.log(error);
@@ -69,7 +70,7 @@ function App() {
     dispatch({type:'CANCEL_TX_MODAL'});
     dispatch({type:'LOADING'});
     try{
-      const txHash = await store.tokenWallet.forwardTransfer(ethers.utils.parseEther(store.transferAmount),store.transferDestination);
+      const txHash = await store.tokenWallet.forwardTransfer(store.transferAmount);
       const newBalance = (parseFloat((await store.tokenWallet.token.balanceOf(store.address)).toString())/(Math.pow(10,18))).toFixed(2);
       console.log(txHash);
       dispatch({type:'UPDATE_BALANCE',tokenBalance:newBalance});
@@ -82,7 +83,7 @@ function App() {
   }
 
   const viewEtherscan = () => {
-    window.open("https://kovan.etherscan.io/tx/"+store.txHash);
+    window.open("https://testnet.bscscan.com/tx/"+store.txHash);
   }
 
   return (
