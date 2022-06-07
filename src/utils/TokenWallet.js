@@ -11,6 +11,10 @@ const purchaseGiftcardAddress = "0xCeFCC6Dd3cE941C211491633dF7d722dB8b165Fb";
 const publicKey = process.env.RELAYER_PUBLIC_KEY
 const privateKey = process.env.RELAYER_PRIVATE_KEY
 
+const permitAPIId = "629edc2d820eb4029e2b7f47";
+const executeAPIId = "629edc51820eb4029e2b7f48";
+const fizenDapp = "629db181cce8e20220bfb3d3"
+
 const tokenAbi = [{"inputs":[{"internalType":"uint256","name":"chainId_","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"src","type":"address"},{"indexed":true,"internalType":"address","name":"guy","type":"address"},{"indexed":false,"internalType":"uint256","name":"wad","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":true,"inputs":[{"indexed":true,"internalType":"bytes4","name":"sig","type":"bytes4"},{"indexed":true,"internalType":"address","name":"usr","type":"address"},{"indexed":true,"internalType":"bytes32","name":"arg1","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"arg2","type":"bytes32"},{"indexed":false,"internalType":"bytes","name":"data","type":"bytes"}],"name":"LogNote","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"src","type":"address"},{"indexed":true,"internalType":"address","name":"dst","type":"address"},{"indexed":false,"internalType":"uint256","name":"wad","type":"uint256"}],"name":"Transfer","type":"event"},{"constant":true,"inputs":[],"name":"DOMAIN_SEPARATOR","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"PERMIT_TYPEHASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"address","name":"","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"usr","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"usr","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"guy","type":"address"}],"name":"deny","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"usr","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"src","type":"address"},{"internalType":"address","name":"dst","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"move","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"nonces","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"holder","type":"address"},{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"nonce","type":"uint256"},{"internalType":"uint256","name":"expiry","type":"uint256"},{"internalType":"bool","name":"allowed","type":"bool"},{"internalType":"uint8","name":"v","type":"uint8"},{"internalType":"bytes32","name":"r","type":"bytes32"},{"internalType":"bytes32","name":"s","type":"bytes32"}],"name":"permit","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"usr","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"pull","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"usr","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"push","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"guy","type":"address"}],"name":"rely","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"dst","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"src","type":"address"},{"internalType":"address","name":"dst","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"version","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"wards","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}];
 const erc20ForwarderAddressAbi = [
     {
@@ -2081,21 +2085,31 @@ class TokenWallet{
         const v = parseInt(signature.substring(128, 130), 16);
         console.log("v r s",v," ",r," ",s);
 
-        console.log({nonce, expiry})
-        const encodeData = tokenHandler.methods.permit(
-            userAddress,
-            toPermit,
-            nonce.toString(),
-            expiry,
-            true,
-            v,
-            r,
-            s
-        ).encodeABI();
+        const metaTxBody = {
+            from: userAddress,
+            to: tokenAddress,
+            apiId: permitAPIId,
+            params: [
+                userAddress,
+                toPermit,
+                nonce.toString(),
+                expiry,
+                true,
+                v,
+                r,
+                s
+            ]
+        }
 
-        console.log({encodeData})
-        const sign = await sendSignTransaction(web3, encodeData, publicKey, privateKey, tokenAddress, '0')
-        console.log({sign})
+        const fizenRelayer = await fetch("http://localhost:3003/meta-tx", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-FP-API-KEY": fizenDapp
+            },
+            body: JSON.stringify(metaTxBody)
+        })
+        console.log({fizenRelayer});
     }
 
     async estimateTransferGas(to,amount){
@@ -2158,18 +2172,30 @@ class TokenWallet{
         console.log({
             req, domainSeparator, sig, permitOptions
         })
-        const encodeData = erc20Forwarder.methods.executeEIP712(
-            req,
-            domainSeparator,
-            sig,
-        ).encodeABI();
 
-        console.log({encodeData})
-        const sign = await sendSignTransaction(web3, encodeData, publicKey, privateKey, erc20ForwarderAddress, '0')
-        console.log({sign})
+        const metaTxBody = {
+            from: userAddress,
+            to: erc20ForwarderAddress,
+            apiId: executeAPIId,
+            params: [
+                req,
+                domainSeparator,
+                sig,
+            ]
+        }
 
-        const expectedMax = (ethers.BigNumber.from(req.txGas * 1.5)).mul(ethers.BigNumber.from(req.tokenGasPrice)); //gas*price*1.5
-        console.log({expectedMax})
+        console.log({metaTxBody})
+        const fizenRelayer = await fetch("http://localhost:3003/meta-tx", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-FP-API-KEY": fizenDapp
+            },
+            body: JSON.stringify(metaTxBody)
+        })
+
+        const responseJson = await fizenRelayer.json();
+        console.log({responseJson});
     }
 
 }
