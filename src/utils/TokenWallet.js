@@ -3,10 +3,10 @@ import {sendSignTransaction} from "./blockchain-utils";
 import dotenv from "dotenv";
 dotenv.config();
 
-const tokenAddress = "0x389e0277A3E3ec2Bd810109029593377EDfC4085";
-const biconomyAddress = "0xaE2Bb10987D23c401E1445761145A9fC3259A73D"
-const erc20ForwarderAddress = "0xFaa0849cB0Aa23a7a6EA862c9D01015c06e2f9a5";
-const purchaseGiftcardAddress = "0xCeFCC6Dd3cE941C211491633dF7d722dB8b165Fb";
+const tokenAddress = "0x10FD2AebA77543C3039689fd5CDc1a16e984e115";
+const biconomyAddress = "0x65b2FD38e7107511FbFf85ea3473FD7660A88d1A"
+const erc20ForwarderAddress = "0x91c97699B649CB6669E981979D7096827b1F74c4";
+const purchaseGiftcardAddress = "0xF4C4B3Be333CDF4b1B2021623ab3D94b68D1Ab41";
 
 const publicKey = process.env.RELAYER_PUBLIC_KEY
 const privateKey = process.env.RELAYER_PRIVATE_KEY
@@ -1959,7 +1959,7 @@ const purchaseGiftCardAbi = [
         "type": "function"
     }
 ];
-const RPC_URL = 'https://data-seed-prebsc-1-s1.binance.org:8545'
+const RPC_URL = 'https://speedy-nodes-nyc.moralis.io/fc0baadcd4ee3e82966cacde/bsc/testnet'
 const Web3 = require('web3')
 const web3 = new Web3(RPC_URL);
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
@@ -1972,7 +1972,7 @@ const tokenHandler = new web3.eth.Contract(tokenAbi, tokenAddress);
 const chainId = 97
 let permitOptions = {}
 let daiDomainData = {
-    name: "Dai Stablecoin",
+    name: "FiFood",
     version: "1",
     chainId,
     verifyingContract: tokenAddress,
@@ -1980,7 +1980,7 @@ let daiDomainData = {
 
 const salt = ethers.BigNumber.from(chainId);
 let domainData = {
-    name : "TestPurchaseGiftcard",
+    name : "PurchaseGiftcard",
     version : "1",
     verifyingContract : biconomyAddress,
     salt: ethers.utils.hexZeroPad(salt.toHexString(), 32),
